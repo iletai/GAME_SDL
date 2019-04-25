@@ -7,6 +7,35 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+const		int		SCREEN_WIDTH			= 1200;
+const		int		SCREEN_HEIGHT			= 600;
+const	    int		SCREEN_BPP				= 32;
+
+SDL_Surface			*g_screen				= NULL;
+SDL_Surface			*g_bkground				= NULL;
+SDL_Event			g_event;
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+bool Init()
+{
+	if ( SDL_Init(SDL_INIT_EVERYTHING)  == -1 )
+		return false;
+
+	g_screen = SDL_SetVideoMode(
+								SCREEN_WIDTH,
+								SCREEN_HEIGHT,
+								SCREEN_BPP,
+								SDL_SWSURFACE
+								);
+	if ( g_screen == NULL )
+		return false;
+
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
 SDL_Surface* LoadImageByPath(std::string file_Path)
 {
 	SDL_Surface *load_Image		= NULL;
@@ -24,23 +53,56 @@ SDL_Surface* LoadImageByPath(std::string file_Path)
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y)
+{
+	SDL_Rect offset;
+	offset.x = x;
+	offset.y = y;
+	SDL_BlitSurface( src, NULL, des, &offset );
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void CleanUp()
+{
+	SDL_FreeSurface(g_screen);
+	SDL_FreeSurface(g_bkground);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
 int main()
 {
-	SDL_Surface *screen;
-	SDL_Surface *image;
+	bool is_quitGame = false;
+	if ( Init() == false )
+		return 0;
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
-		return 1;
-	
-	screen = SDL_SetVideoMode(1280, 1024, 32, SDL_SWSURFACE);
-	image = LoadImageByPath("JZBW2722.PNG");
+	g_bkground = LoadImageByPath("JZBW2722.PNG");
+	if ( g_bkground == NULL )
+	{
+		return 0;
+	}
 
-	SDL_BlitSurface(image, NULL, screen, NULL);
+	ApplySurface(g_bkground, g_screen, 0, 0);
 
-	SDL_Flip(screen);
-	SDL_Delay(5000);
-	SDL_FreeSurface(image);
+	while (!is_quitGame)
+	{
+		while ( SDL_PollEvent(&g_event) )
+		{
+			if (g_event.type == SDL_QUIT)
+			{
+				is_quitGame = true;
+				break;
+			}
+		}
+		if ( SDL_Flip(g_screen)  == -1)
+		{						  
+			return 0;
+		}
+	}
+
+	CleanUp(); //call to free value pointer
 	SDL_Quit();
 
-	return 0;
+	return 1;
 }
