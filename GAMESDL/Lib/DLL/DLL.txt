@@ -1,0 +1,14 @@
+jpeg.dll
+libFLAC-8.dll
+libfreetype-6.dll
+libmikmod-2.dll
+libogg-0.dll
+libpng13.dll
+libvorbis-0.dll
+libvorbisfile-3.dll
+SDL.dll
+SDL_image.dll
+SDL_mixer.dll
+SDL_ttf.dll
+smpeg.dll
+zlib1.dll
