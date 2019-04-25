@@ -38,15 +38,21 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>..\..\..\GAME_SDL\GAMESDL\Lib\SDL_1_2_15\include;..\..\..\GAME_SDL\GAMESDL\Lib\SDL_image_1_2_4\include;..\..\..\GAME_SDL\GAMESDL\Lib\SDL2_ttf_2_0_11\include;..\..\..\GAME_SDL\GAMESDL\Lib\SDL_mixer_1_2_12\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\GAME_SDL\GAMESDL\Lib\SDL_1_2_15\lib\x86;..\..\..\GAME_SDL\GAMESDL\Lib\SDL_image_1_2_4\lib;..\..\..\GAME_SDL\GAMESDL\Lib\SDL_mixer_1_2_12\lib\x86;..\..\..\GAME_SDL\GAMESDL\Lib\SDL2_ttf_2_0_11\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\..\Lib\SDL_1_2_15\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
