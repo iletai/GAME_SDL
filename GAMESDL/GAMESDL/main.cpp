@@ -7,13 +7,17 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-const		int		SCREEN_WIDTH			= 1200;
+const		int		SCREEN_WIDTH			= 1024;
 const		int		SCREEN_HEIGHT			= 600;
 const	    int		SCREEN_BPP				= 32;
 
 SDL_Surface			*g_screen				= NULL;
 SDL_Surface			*g_bkground				= NULL;
 SDL_Event			g_event;
+SDL_Surface			*g_object;
+
+int POS_OBJECT_X = 400;
+int POS_OBJECT_Y = 300;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +50,11 @@ SDL_Surface* LoadImageByPath(std::string file_Path)
 	{
 		optimize_Image = SDL_DisplayFormat(load_Image);
 		SDL_Surface(load_Image);
+		if (optimize_Image != NULL)
+		{
+			UINT32 color_key = SDL_MapRGB(optimize_Image->format, 000000, 000000, 000000);
+			SDL_SetColorKey(optimize_Image, SDL_SRCCOLORKEY, color_key);
+		}
 	}
 
 	return optimize_Image;
@@ -77,13 +86,14 @@ int main()
 	if ( Init() == false )
 		return 0;
 
-	g_bkground = LoadImageByPath("JZBW2722.PNG");
+	g_bkground = LoadImageByPath("albedo_by_raikoart_dd374ik-fullview.jpg");
+	g_object   = LoadImageByPath("airplane-3.png");
 	if ( g_bkground == NULL )
-	{
 		return 0;
-	}
-
+	if (g_object == NULL)
+		return 0;
 	ApplySurface(g_bkground, g_screen, 0, 0);
+	ApplySurface(g_object, g_screen, POS_OBJECT_X, POS_OBJECT_Y);
 
 	while (!is_quitGame)
 	{
