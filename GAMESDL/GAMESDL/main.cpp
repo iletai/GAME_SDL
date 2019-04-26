@@ -31,13 +31,13 @@ int main()
 	if ( Init() == false )
 		return 0;
 
-	g_bkground = SDLCommonFunc::LoadImageByPath("JZBW2722.PNG");
-	//g_object   = LoadImageByPath("airplane-3.png");
+	g_bkground = SDLCommonFunc::LoadImageByPath("albedo_by_raikoart_dd374ik-fullview.jpg");
 	if ( g_bkground == NULL )
 		return 0;
+	SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
+	//g_object   = LoadImageByPath("airplane-3.png");
 	// if (g_object == NULL)
 	//	return 0;
-	SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
 	//ApplySurface(g_object, g_screen, POS_OBJECT_X, POS_OBJECT_Y);
 
 	while (!is_quitGame)
