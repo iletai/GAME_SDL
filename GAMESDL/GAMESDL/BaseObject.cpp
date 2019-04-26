@@ -1,4 +1,3 @@
-#include "CommonFunction.h"
 #include "BaseObject.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,11 +12,11 @@ BaseObject::BaseObject() : p_object(NULL)
 
 BaseObject::~BaseObject()
 {
-	if (p_object != NULL)
+	/*if (p_object != NULL)
 	{
 		delete p_object;
 		p_object = NULL;
-	}
+	}*/
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////

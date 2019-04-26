@@ -27,4 +27,4 @@ namespace SDLCommonFunc
 	void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);
 	void CleanUp();
 }
-#endif
+#endif	 //COMMONFUNCTION_H

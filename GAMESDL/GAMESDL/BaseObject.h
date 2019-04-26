@@ -1,6 +1,7 @@
 #ifndef BASE_OBJECT_H
 #define BASE_OBJECT_H
 
+#include "CommonFunction.h"
 
 class BaseObject
 {
@@ -18,4 +19,4 @@ protected:
 	SDL_Surface			*p_object;
 };
 
-#endif
+#endif //BASE_OBJECT_H

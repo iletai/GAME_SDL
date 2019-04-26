@@ -1,6 +1,8 @@
 #include "CommonFunction.h"
 #undef main
 
+#include "MainObject.h"
+
 using namespace SDLCommonFunc;
 
 
@@ -35,10 +37,15 @@ int main()
 	if ( g_bkground == NULL )
 		return 0;
 	SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
-	//g_object   = LoadImageByPath("airplane-3.png");
-	// if (g_object == NULL)
-	//	return 0;
-	//ApplySurface(g_object, g_screen, POS_OBJECT_X, POS_OBJECT_Y);
+	
+	MainObject plane_Object;
+	plane_Object.SetRectObject(400, 220);
+	bool isRect = plane_Object.LoadImageByPath("airplane-3.png");
+	if (!isRect)
+	{
+		return 0;
+	}
+	plane_Object.ShowObject(g_screen);
 
 	while (!is_quitGame)
 	{
