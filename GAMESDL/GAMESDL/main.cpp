@@ -36,7 +36,6 @@ int main()
 	g_bkground = SDLCommonFunc::LoadImageByPath("albedo_by_raikoart_dd374ik-fullview.jpg");
 	if ( g_bkground == NULL )
 		return 0;
-	SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
 	
 	MainObject plane_Object;
 	plane_Object.SetRectObject(400, 220);
@@ -45,7 +44,7 @@ int main()
 	{
 		return 0;
 	}
-	plane_Object.ShowObject(g_screen);
+	//plane_Object.ShowObject(g_screen);
 
 	while (!is_quitGame)
 	{
@@ -56,7 +55,13 @@ int main()
 				is_quitGame = true;
 				break;
 			}
+			plane_Object.HandleInput(g_event);
 		}
+
+		SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
+
+		plane_Object.ShowObject(g_screen);
+		plane_Object.HandleMove();
 		if ( SDL_Flip(g_screen)  == -1)
 		{						  
 			return 0;

@@ -1,8 +1,11 @@
 #include "BaseObject.h"
 
+using namespace std;
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-BaseObject::BaseObject() : p_object(NULL)
+BaseObject::BaseObject() 
+	: p_object(NULL)
 {
 	rect.x = 0;
 	rect.y = 0;
@@ -12,11 +15,8 @@ BaseObject::BaseObject() : p_object(NULL)
 
 BaseObject::~BaseObject()
 {
-	/*if (p_object != NULL)
-	{
-		delete p_object;
-		p_object = NULL;
-	}*/
+	if (p_object != NULL)
+		SDL_FreeSurface(p_object);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////

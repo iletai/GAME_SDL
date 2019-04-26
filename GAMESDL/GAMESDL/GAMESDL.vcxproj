@@ -71,12 +71,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AmorGunObject.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="CommonFunction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AmorGunObject.h" />
     <ClInclude Include="BaseObject.h" />
     <ClInclude Include="CommonFunction.h" />
     <ClInclude Include="MainObject.h" />
