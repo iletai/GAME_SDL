@@ -1,4 +1,5 @@
 #include "CommonFunction.h"
+#include "MainObject.h"
 #undef main
 
 using namespace SDLCommonFunc;
@@ -8,16 +9,16 @@ using namespace SDLCommonFunc;
 
 bool Init()
 {
-	if ( SDL_Init(SDL_INIT_EVERYTHING)  == -1 )
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 		return false;
 
 	g_screen = SDL_SetVideoMode(
-								SCREEN_WIDTH,
-								SCREEN_HEIGHT,
-								SCREEN_BPP,
-								SDL_SWSURFACE
-								);
-	if ( g_screen == NULL )
+		SCREEN_WIDTH,
+		SCREEN_HEIGHT,
+		SCREEN_BPP,
+		SDL_SWSURFACE
+	);
+	if (g_screen == NULL)
 		return false;
 
 	return true;
@@ -28,12 +29,12 @@ bool Init()
 int main()
 {
 	bool is_quitGame = false;
-	if ( Init() == false )
+	if (Init() == false)
 		return 0;
 
 	g_bkground = SDLCommonFunc::LoadImageByPath("JZBW2722.PNG");
 	//g_object   = LoadImageByPath("airplane-3.png");
-	if ( g_bkground == NULL )
+	if (g_bkground == NULL)
 		return 0;
 	// if (g_object == NULL)
 	//	return 0;
@@ -42,7 +43,7 @@ int main()
 
 	while (!is_quitGame)
 	{
-		while ( SDL_PollEvent(&g_event) )
+		while (SDL_PollEvent(&g_event))
 		{
 			if (g_event.type == SDL_QUIT)
 			{
@@ -50,8 +51,8 @@ int main()
 				break;
 			}
 		}
-		if ( SDL_Flip(g_screen)  == -1)
-		{						  
+		if (SDL_Flip(g_screen) == -1)
+		{
 			return 0;
 		}
 	}
