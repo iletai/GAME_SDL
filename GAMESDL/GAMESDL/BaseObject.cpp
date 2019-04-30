@@ -2,7 +2,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-BaseObject::BaseObject() : p_object(NULL), rect{ 0,0 }
+BaseObject::BaseObject() 
+	: p_object(NULL)
+	, rect{ 0,0 }
 {
 }
 

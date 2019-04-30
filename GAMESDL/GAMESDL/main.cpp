@@ -32,14 +32,17 @@ int main()
 	if (Init() == false)
 		return 0;
 
-	g_bkground = SDLCommonFunc::LoadImageByPath("JZBW2722.PNG");
-	//g_object   = LoadImageByPath("airplane-3.png");
+	g_bkground = SDLCommonFunc::LoadImageByPath("BG.jpg");
 	if (g_bkground == NULL)
 		return 0;
-	// if (g_object == NULL)
-	//	return 0;
 	SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
-	//ApplySurface(g_object, g_screen, POS_OBJECT_X, POS_OBJECT_Y);
+	
+	MainObject* p_PlaneObject = new MainObject();
+	p_PlaneObject->SetRectObject(300, 300);
+	p_PlaneObject->LoadImageByPath("airplane-3.png");
+	if (p_PlaneObject == NULL)
+		return 0;
+	p_PlaneObject->ShowObject(g_screen);
 
 	while (!is_quitGame)
 	{
