@@ -44,6 +44,7 @@ int main()
 		return 0;
 	p_PlaneObject->ShowObject(g_screen);
 
+
 	while (!is_quitGame)
 	{
 		while (SDL_PollEvent(&g_event))
