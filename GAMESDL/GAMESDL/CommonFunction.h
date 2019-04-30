@@ -1,24 +1,23 @@
 #ifndef COMMONFUNCTION_H
 #define COMMONFUNCTION_H
 
-#include <Windows.h>	 ]
+#include <Windows.h>	 
 #include <string>
 
 #include <SDL.h>
 #include <SDL_image.h>
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////
-const		int		SCREEN_WIDTH	= 1200;
-const		int		SCREEN_HEIGHT	= 600;
-const	    int		SCREEN_BPP		= 32;
+const		int					SCREEN_WIDTH	= 1200;
+const		int					SCREEN_HEIGHT	= 600;
+const	    int					SCREEN_BPP		= 32;
 
-static SDL_Surface			*g_screen = NULL;
-static SDL_Surface			*g_bkground = NULL;
-static SDL_Event			g_event;
+static		SDL_Surface			*g_screen = NULL;
+static		SDL_Surface			*g_bkground = NULL;
+static		SDL_Event			g_event;
 
-static int POS_OBJECT_X = 400;
-static int POS_OBJECT_Y = 300;
+static int POS_OBJECT_X				= 400;
+static int POS_OBJECT_Y				= 300;
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 namespace SDLCommonFunc
@@ -27,4 +26,4 @@ namespace SDLCommonFunc
 	void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);
 	void CleanUp();
 }
-#endif
+#endif //COMMONFUNCTION_H

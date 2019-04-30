@@ -1,4 +1,3 @@
-#include "CommonFunction.h"
 #include "BaseObject.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -15,8 +14,7 @@ BaseObject::~BaseObject()
 {
 	if (p_object != NULL)
 	{
-		delete p_object;
-		p_object = NULL;
+		SDL_FreeSurface(p_object);
 	}
 }
 
@@ -63,4 +61,3 @@ SDL_Surface* BaseObject::GetObject()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-
