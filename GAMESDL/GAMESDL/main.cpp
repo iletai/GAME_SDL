@@ -42,8 +42,6 @@ int main()
 	p_PlaneObject->LoadImageByPath("airplane-3.png");
 	if (p_PlaneObject == NULL)
 		return 0;
-	p_PlaneObject->ShowObject(g_screen);
-
 
 	while (!is_quitGame)
 	{
@@ -54,7 +52,11 @@ int main()
 				is_quitGame = true;
 				break;
 			}
+			p_PlaneObject->HandleInputMoveObject(g_event);
 		}
+		SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
+		p_PlaneObject->ShowObject(g_screen);
+		p_PlaneObject->HandleMoveObject();
 		if (SDL_Flip(g_screen) == -1)
 		{
 			return 0;

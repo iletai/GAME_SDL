@@ -4,8 +4,8 @@
 #include "BaseObject.h"
 #include "CommonFunction.h"
 
-#define WIDTH_MAIN_OBJECT			90
-#define HEIGHT_MAIN_OBJECT			80
+#define WIDTH_MAIN_OBJECT			35
+#define HEIGHT_MAIN_OBJECT			30
 
 class MainObject : public BaseObject
 {
