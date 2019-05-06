@@ -82,17 +82,21 @@ void MainObject::HandleInput(SDL_Event events)
 		AmoGunObject* p_AmoOjbect = new AmoGunObject();
 		if (events.button.button == SDL_BUTTON_LEFT)
 		{
-			p_AmoOjbect->setWidthHeightAmor(WIDTH_LASER, HEIGHT_LASER);
-			p_AmoOjbect->LoadImageByPath("laser.png");
+			p_AmoOjbect->SetWidthHeightAmor(WIDTH_LASER, HEIGHT_LASER);
+			p_AmoOjbect->LoadImageByPath("laser.png",0,255,255);
 			p_AmoOjbect->SetTypeAmor(AmoGunObject::AmorType::LASER);
 
 		}
 		if (events.button.button == SDL_BUTTON_RIGHT)
 		{
-			p_AmoOjbect->setWidthHeightAmor(WIDTH_LASER, HEIGHT_LASER);
-			p_AmoOjbect->LoadImageByPath("laser.png");
-			p_AmoOjbect->SetTypeAmor(AmoGunObject::AmorType::LASER);
+			p_AmoOjbect->SetWidthHeightAmor(WIDTH_SPHERE, HEIGHT_SPHERE);
+			p_AmoOjbect->LoadImageByPath("sphere.png",0,255,255);
+			p_AmoOjbect->SetTypeAmor(AmoGunObject::AmorType::SPHERE);
 		}
+
+		p_AmoOjbect->SetRectObject(this->rect.x + 80, this->rect.y + 22);
+		p_AmoOjbect->SetIsMoving(true);
+		p_AmorList.push_back(p_AmoOjbect);
 	}
 	else if (events.type == SDL_MOUSEBUTTONUP)
 	{

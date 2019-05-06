@@ -31,9 +31,9 @@ void BaseObject::ShowObject(SDL_Surface *des)
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-bool BaseObject::LoadImageByPath(const char *file_namePath)
+bool BaseObject::LoadImageByPath(const char *file_namePath, int firtsRgb, int secondRgb, int thirdRgb)
 {
-	p_object = SDLCommonFunc::LoadImageByPath(file_namePath);
+	p_object = SDLCommonFunc::LoadImageByPath(file_namePath, firtsRgb, secondRgb, thirdRgb);
 	if (p_object == NULL)
 		return false;
 	return true;

@@ -33,18 +33,15 @@ int main()
 	if ( Init() == false )
 		return 0;
 
-	g_bkground = SDLCommonFunc::LoadImageByPath("albedo_by_raikoart_dd374ik-fullview.jpg");
+	g_bkground = SDLCommonFunc::LoadImageByPath("BG.jpg", 00000, 00000, 00000);
 	if ( g_bkground == NULL )
 		return 0;
 	
 	MainObject plane_Object;
 	plane_Object.SetRectObject(400, 220);
-	bool isRect = plane_Object.LoadImageByPath("airplane-3.png");
+	bool isRect = plane_Object.LoadImageByPath("airplane-3.png", 00000, 00000, 00000);
 	if (!isRect)
-	{
 		return 0;
-	}
-	//plane_Object.ShowObject(g_screen);
 
 	while (!is_quitGame)
 	{
@@ -62,6 +59,30 @@ int main()
 
 		plane_Object.ShowObject(g_screen);
 		plane_Object.HandleMove();
+
+		for (int i = 0; i < plane_Object.GetAmorList().size(); i++)
+		{
+			std::vector<AmoGunObject*> amo_List = plane_Object.GetAmorList();
+			AmoGunObject* p_amo = amo_List.at(i);
+			if (p_amo != NULL)
+			{
+				if (p_amo->GetIsMovingAmor())
+				{
+					p_amo->ShowObject(g_screen);
+					p_amo->HandleMoveAmor(SCREEN_WIDTH, SCREEN_HEIGHT);
+				}
+				else
+				{
+					if (p_amo != NULL)
+					{
+						amo_List.erase(amo_List.begin() + i);
+						plane_Object.SetAmoList(amo_List);
+						delete p_amo;
+						p_amo = NULL;
+					}
+				}
+			}
+		}
 		if ( SDL_Flip(g_screen)  == -1)
 		{						  
 			return 0;

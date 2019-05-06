@@ -21,15 +21,15 @@ public:
 		SPHERE
 	};
 
-	void    HandleMoveAmor();
+	void    HandleMoveAmor(const int& x_screenBorder, const int& y_screenBorder);
 	void    HandleInputActionAmor(SDL_Event events);
 
-	int		getTypeAmor() const;
+	int		GetTypeAmor() const;
 	void	SetTypeAmor(const int& type);
 
-	bool	getIsMovingAmor() const;
-	void	setIsMoving(bool isMovingAmor);
-	void    setWidthHeightAmor(const int& width, const int& height);
+	bool	GetIsMovingAmor() const;
+	void	SetIsMoving(bool isMove);
+	void    SetWidthHeightAmor(const int& width, const int& height);
 private:
 	int		x_valAmor;
 	int		y_valAmor;

@@ -2,7 +2,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-SDL_Surface* SDLCommonFunc::LoadImageByPath(std::string file_Path)
+SDL_Surface* SDLCommonFunc::LoadImageByPath(std::string file_Path, int firtsRgb, int secondRgb, int thirdRgb)
 {
 	SDL_Surface *load_Image = NULL;
 	SDL_Surface *optimize_Image = NULL;
@@ -14,7 +14,7 @@ SDL_Surface* SDLCommonFunc::LoadImageByPath(std::string file_Path)
 		SDL_Surface(load_Image);
 		if (optimize_Image != NULL)
 		{
-			UINT32 color_key = SDL_MapRGB(optimize_Image->format, 000000, 000000, 000000);
+			UINT32 color_key = SDL_MapRGB(optimize_Image->format, firtsRgb, secondRgb, thirdRgb);
 			SDL_SetColorKey(optimize_Image, SDL_SRCCOLORKEY, color_key);
 		}
 	}
