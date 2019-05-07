@@ -13,6 +13,7 @@ const		int		SCREEN_WIDTH	= 1440;
 const		int		SCREEN_HEIGHT	= 960;
 const		int		MAP_HEIGHT		= 200;
 const	    int		SCREEN_BPP		= 32;
+const		int		NUM_ENEMYS		= 3;
 
 static SDL_Surface			*g_screen = NULL;
 static SDL_Surface			*g_bkground = NULL;

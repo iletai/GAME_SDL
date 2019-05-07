@@ -46,19 +46,26 @@ int main()
 		return 0;
 
 	//ENEMY OBJECT
-	EnemyObject* p_Enemy = new EnemyObject();
-	bool ret = p_Enemy->LoadImageByPath("enemyRock.png", 00000, 00000, 00000);
-	if (!ret)
-		return 0;
-
-	int rand_y_ValEnemy = rand() % 400;
-	if (rand_y_ValEnemy > SCREEN_HEIGHT)
+		EnemyObject* p_Enemys = new EnemyObject[NUM_ENEMYS];
+	for (int  t = 0; t < NUM_ENEMYS; t++)
 	{
-		rand_y_ValEnemy = SCREEN_HEIGHT*0.3 - 200;
-	}
+		EnemyObject* p_Enemy = (p_Enemys + t);
+		bool ret = p_Enemy->LoadImageByPath("enemyRock.png", 00000, 00000, 00000);
+		if (!ret)
+			return 0;
 
-	p_Enemy->SetRectObject(rand_y_ValEnemy, 0);
-	p_Enemy->Set_Y_ValueEnemy(5);
+		int rand_y_ValEnemy = rand() % 400;
+		if (rand_y_ValEnemy > SCREEN_HEIGHT)
+		{
+			rand_y_ValEnemy = SCREEN_HEIGHT*0.3 - 200;
+		}
+
+		p_Enemy->SetRectObject(rand_y_ValEnemy, 0);
+		p_Enemy->Set_Y_ValueEnemy(5);
+		AmoGunObject* p_AmoEnemy = new AmoGunObject();
+		p_Enemy->InitAmoEnemy(p_AmoEnemy);
+	}
+	
 
 
 	while (!is_quitGame)
@@ -105,6 +112,7 @@ int main()
 	
 		p_Enemy->ShowObject(g_screen);
 		p_Enemy->HandleMoveEnemy(SCREEN_WIDTH, SCREEN_HEIGHT);
+		p_Enemy->MakeAmorEnemy(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
 		if ( SDL_Flip(g_screen)  == -1)
 		{						  
 			return 0;

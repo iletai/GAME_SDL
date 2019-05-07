@@ -23,7 +23,7 @@ public:
 
 	void    HandleMoveAmor(const int& x_screenBorder, const int& y_screenBorder);
 	void    HandleInputActionAmor(SDL_Event events);
-
+	void	HandleMoveTopToDown();
 	int		GetTypeAmor() const;
 	void	SetTypeAmor(const int& type);
 

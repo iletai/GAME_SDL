@@ -73,3 +73,59 @@ int EnemyObject::Get_Y_ValueEnemy() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
+
+void EnemyObject::SetEnemyAmoList(std::vector<AmoGunObject*> amoEnemyList)
+{
+	p_EnemyAmorList = amoEnemyList;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+std::vector<AmoGunObject*> EnemyObject::GetEnemyAmorList() const
+{
+	return p_EnemyAmorList;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void EnemyObject::InitAmoEnemy(AmoGunObject* p_amoEnemy)
+{
+	if (p_amoEnemy)
+	{
+		bool ret = p_amoEnemy->LoadImageByPath("sphere.png", 00000, 00000, 00000);
+		if (ret)
+		{
+			p_amoEnemy->SetIsMoving(true);
+			p_amoEnemy->SetWidthHeightAmor(WIDTH_SPHERE, HEIGHT_SPHERE);
+			p_amoEnemy->SetTypeAmor(AmoGunObject::AmorType::SPHERE);
+			p_amoEnemy->SetRectObject(rect.x, rect.y + rect.h*0.5);
+			p_EnemyAmorList.push_back(p_amoEnemy);
+				
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void EnemyObject::MakeAmorEnemy(SDL_Surface* des, const int& x_limitEnemy, const int& y_limitEnemy)
+{
+	for (int i = 0; i < p_EnemyAmorList.size(); i++)
+	{
+		AmoGunObject* p_amo = p_EnemyAmorList.at(i);
+		if (p_amo)
+		{
+			if (p_amo->GetIsMovingAmor())
+			{
+				p_amo->ShowObject(des);
+				p_amo->HandleMoveTopToDown();
+			}
+			else
+			{
+				p_amo->SetIsMoving(true);
+				p_amo->SetRectObject(rect.x, rect.y + rect.h*0.5);
+			}
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
