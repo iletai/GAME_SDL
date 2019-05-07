@@ -6,8 +6,8 @@ EnemyObject::EnemyObject()
 	: x_valEnemy(0)
 	, y_valEnemy(0)
 {
-	rect.x = SCREEN_WIDTH;
-	rect.y = SCREEN_HEIGHT;
+	rect.x = 0;
+	rect.y = 0;
 	rect.w = WIDTH_ENEMY;
 	rect.h = HEIGHT_ENEMY;
 }
@@ -24,8 +24,17 @@ EnemyObject::~EnemyObject()
 void EnemyObject::HandleMoveEnemy(const int& x_screenBorder, const int& y_screenBorder)
 {
 	rect.y += y_valEnemy;
+
+	int rand_y_ValEnemy = rand() % 400;
+	if (rand_y_ValEnemy > SCREEN_HEIGHT)
+	{
+		rand_y_ValEnemy = SCREEN_WIDTH*0.3 - 300;
+	}
 	if (rect.y > x_screenBorder)
+	{
+		rect.x = rand_y_ValEnemy;
 		rect.y = 0;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,28 +46,28 @@ void EnemyObject::HandleInputActionEnemy(SDL_Event events)
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-void EnemyObject::SetXValueEnemy(const int& val)
+void EnemyObject::Set_X_ValueEnemy(const int& val)
 {
 	x_valEnemy = val;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-void EnemyObject::SetYValueEnemy(const int& val)
+void EnemyObject::Set_Y_ValueEnemy(const int& val)
 {
 	y_valEnemy = val;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-int EnemyObject::GetXValueEnemy() const
+int EnemyObject::Get_X_ValueEnemy() const
 {
 	return x_valEnemy;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-int EnemyObject::GetYValueEnemy() const
+int EnemyObject::Get_Y_ValueEnemy() const
 {
 	return y_valEnemy;
 }

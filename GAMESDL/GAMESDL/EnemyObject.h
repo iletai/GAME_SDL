@@ -14,10 +14,10 @@ public:
 
 	void	HandleMoveEnemy(const int& x_screenBorder, const int& y_screenBorder);
 	void	HandleInputActionEnemy(SDL_Event events);
-	void	SetXValueEnemy(const int& val);
-	void	SetYValueEnemy(const int& val);
-	int		GetXValueEnemy() const;
-	int		GetYValueEnemy() const;
+	void	Set_X_ValueEnemy(const int& val);
+	void	Set_Y_ValueEnemy(const int& val);
+	int		Get_X_ValueEnemy() const;
+	int		Get_Y_ValueEnemy() const;
 
 private:
 	int		x_valEnemy;

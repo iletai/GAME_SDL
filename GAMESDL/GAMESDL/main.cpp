@@ -41,17 +41,24 @@ int main()
 	//MAIN OBJECT
 	MainObject plane_Object;
 	plane_Object.SetRectObject(400, 220);
-	bool isRect = plane_Object.LoadImageByPath("airplane-3.png", 00000, 00000, 00000);
+	bool isRect = plane_Object.LoadImageByPath("airplane-icon.png", 00000, 00000, 00000);
 	if (!isRect)
 		return 0;
 
 	//ENEMY OBJECT
 	EnemyObject* p_Enemy = new EnemyObject();
-	bool ret = p_Enemy->LoadImageByPath("rock.png", 00000, 00000, 00000);
+	bool ret = p_Enemy->LoadImageByPath("enemyRock.png", 00000, 00000, 00000);
 	if (!ret)
 		return 0;
-	p_Enemy->SetRectObject(SCREEN_WIDTH*0.3, SCREEN_HEIGHT);
-	p_Enemy->SetYValueEnemy(5);
+
+	int rand_y_ValEnemy = rand() % 400;
+	if (rand_y_ValEnemy > SCREEN_HEIGHT)
+	{
+		rand_y_ValEnemy = SCREEN_HEIGHT*0.3 - 200;
+	}
+
+	p_Enemy->SetRectObject(rand_y_ValEnemy, 0);
+	p_Enemy->Set_Y_ValueEnemy(5);
 
 
 	while (!is_quitGame)
@@ -95,6 +102,7 @@ int main()
 			}
 		}
 		// ENEMY SHOW
+	
 		p_Enemy->ShowObject(g_screen);
 		p_Enemy->HandleMoveEnemy(SCREEN_WIDTH, SCREEN_HEIGHT);
 		if ( SDL_Flip(g_screen)  == -1)
