@@ -85,7 +85,6 @@ void MainObject::HandleInput(SDL_Event events)
 			p_AmoOjbect->SetWidthHeightAmor(WIDTH_LASER, HEIGHT_LASER);
 			p_AmoOjbect->LoadImageByPath("laser.png",0,255,255);
 			p_AmoOjbect->SetTypeAmor(AmoGunObject::AmorType::LASER);
-
 		}
 		if (events.button.button == SDL_BUTTON_RIGHT)
 		{
@@ -96,6 +95,7 @@ void MainObject::HandleInput(SDL_Event events)
 
 		p_AmoOjbect->SetRectObject(this->rect.x + 80, this->rect.y + 22);
 		p_AmoOjbect->SetIsMoving(true);
+		p_AmoOjbect->Set_Y_ValAmor(10);
 		p_AmorList.push_back(p_AmoOjbect);
 	}
 	else if (events.type == SDL_MOUSEBUTTONUP)
@@ -116,6 +116,33 @@ void MainObject::SetAmoList(std::vector<AmoGunObject*> amoList)
 std::vector<AmoGunObject*> MainObject::GetAmorList() const
 {
 	return p_AmorList;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void MainObject::MakeAmoObject(SDL_Surface* des)
+{
+	for (int i = 0; i < p_AmorList.size(); i++)
+	{
+		AmoGunObject* p_amo = p_AmorList.at(i);
+		if (p_amo != NULL)
+		{
+			if (p_amo->GetIsMovingAmor())
+			{
+				p_amo->ShowObject(des);
+				p_amo->HandleMoveAmor(SCREEN_WIDTH, SCREEN_HEIGHT);
+			}
+			else
+			{
+				if (p_amo != NULL)
+				{
+					p_AmorList.erase(p_AmorList.begin() + i);
+					delete p_amo;
+					p_amo = NULL;
+				}
+			}
+		}
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////

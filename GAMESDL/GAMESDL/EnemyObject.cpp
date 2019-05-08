@@ -40,7 +40,7 @@ void EnemyObject::HandleMoveEnemy(const int& x_screenBorder, const int& y_screen
 	int rand_y_ValEnemy = rand() % 400;
 	if (rand_y_ValEnemy > SCREEN_HEIGHT)
 	{
-		rand_y_ValEnemy = SCREEN_WIDTH*0.3 - 300;
+		rand_y_ValEnemy = SCREEN_WIDTH*0.3 - UNDER_LIMMIT_ENEMY;
 	}
 	if (rect.y > x_screenBorder)
 	{
@@ -111,6 +111,7 @@ void EnemyObject::InitAmoEnemy(AmoGunObject* p_amoEnemy)
 			p_amoEnemy->SetWidthHeightAmor(WIDTH_SPHERE, HEIGHT_SPHERE);
 			p_amoEnemy->SetTypeAmor(AmoGunObject::AmorType::SPHERE);
 			p_amoEnemy->SetRectObject(rect.x, rect.y + rect.h*0.5);
+			p_amoEnemy->Set_Y_ValAmor(10);
 			p_EnemyAmorList.push_back(p_amoEnemy);
 				
 		}

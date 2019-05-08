@@ -5,8 +5,10 @@
 #include "AmorGunObject.h"
 #include <vector>
 
-#define WIDTH_ENEMY		80
-#define HEIGHT_ENEMY	30
+#define		WIDTH_ENEMY			80
+#define		HEIGHT_ENEMY		30
+
+const int UNDER_LIMMIT_ENEMY =	300;
 
 class EnemyObject : public BaseObject
 {

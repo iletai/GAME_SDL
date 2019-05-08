@@ -22,6 +22,7 @@ public:
 
 	void HandleMove();
 	void HandleInput(SDL_Event events);
+	void MakeAmoObject(SDL_Surface* des);
 
 	void SetAmoList(std::vector<AmoGunObject*> amoList);
 	std::vector<AmoGunObject*> GetAmorList() const;

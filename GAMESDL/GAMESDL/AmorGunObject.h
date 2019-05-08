@@ -30,6 +30,10 @@ public:
 	bool	GetIsMovingAmor() const;
 	void	SetIsMoving(bool isMove);
 	void    SetWidthHeightAmor(const int& width, const int& height);
+	void	Set_X_ValAmor(const int& valAmor);
+	int		Get_X_ValAmor() const;
+	void	Set_Y_ValAmor(const int& valAmor);
+	int		Get_Y_ValAmor()	const;
 private:
 	int		x_valAmor;
 	int		y_valAmor;

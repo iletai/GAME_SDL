@@ -23,7 +23,7 @@ AmoGunObject::~AmoGunObject()
 
 void AmoGunObject::HandleMoveTopToDown()
 {
-	rect.y += 10;
+	rect.y += y_valAmor;
 	if (rect.x < 0)
 	{
 		isMovingAmor = false;
@@ -41,10 +41,13 @@ void AmoGunObject::HandleInputActionAmor(SDL_Event events)
 
 void AmoGunObject::HandleMoveAmor(const int& x_screenBorder, const int& y_screenBorder)
 {
-	rect.y -= 10;
-	if (rect.y > x_screenBorder)
+	if (isMovingAmor)
 	{
-		isMovingAmor = false;
+		rect.y -= y_valAmor;
+		if (rect.y > x_screenBorder)
+		{
+			isMovingAmor = false;
+		}
 	}
 }
 
@@ -83,4 +86,33 @@ void AmoGunObject::SetIsMoving(bool isMove)
 {
 	isMovingAmor = isMove;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void AmoGunObject::Set_X_ValAmor(const int& valAmor) 
+{
+	x_valAmor = valAmor;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+void AmoGunObject::Set_Y_ValAmor(const int& valAmor) 
+{
+	y_valAmor = valAmor;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+int AmoGunObject::Get_X_ValAmor() const
+{
+	return x_valAmor;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+int AmoGunObject::Get_Y_ValAmor() const
+{
+	return y_valAmor;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////

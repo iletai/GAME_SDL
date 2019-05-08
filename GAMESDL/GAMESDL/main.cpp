@@ -1,11 +1,10 @@
 #include "CommonFunction.h"
-#undef main
-
 #include "MainObject.h"
+#include "EnemyObject.h"
+#undef main
 
 using namespace SDLCommonFunc;
 
-#include "EnemyObject.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,8 +67,6 @@ int main()
 			p_Enemy->InitAmoEnemy(p_AmoEnemy);
 		}
 	}
-	
-
 
 	while (!is_quitGame)
 	{
@@ -85,33 +82,12 @@ int main()
 
 		SDLCommonFunc::ApplySurface(g_bkground, g_screen, 0, 0);
 
+		//Implement Main Object
 		plane_Object.ShowObject(g_screen);
 		plane_Object.HandleMove();
+		plane_Object.MakeAmoObject(g_screen);
 
-		for (int i = 0; i < plane_Object.GetAmorList().size(); i++)
-		{
-			std::vector<AmoGunObject*> amo_List = plane_Object.GetAmorList();
-			AmoGunObject* p_amo = amo_List.at(i);
-			if (p_amo != NULL)
-			{
-				if (p_amo->GetIsMovingAmor())
-				{
-					p_amo->ShowObject(g_screen);
-					p_amo->HandleMoveAmor(SCREEN_WIDTH, SCREEN_HEIGHT);
-				}
-				else
-				{
-					if (p_amo != NULL)
-					{
-						amo_List.erase(amo_List.begin() + i);
-						plane_Object.SetAmoList(amo_List);
-						delete p_amo;
-						p_amo = NULL;
-					}
-				}
-			}
-		}
-		// ENEMY SHOW
+		//Implement ENEMY SHOW 
 		for (int tt = 0; tt < NUM_ENEMYS; tt++)
 		{
 			EnemyObject* p_Enemy = (p_Enemys + tt);
@@ -123,6 +99,7 @@ int main()
 			}
 		}
 
+		//Update Screen
 		if ( SDL_Flip(g_screen)  == -1)
 		{						  
 			return 0;
