@@ -46,24 +46,27 @@ int main()
 		return 0;
 
 	//ENEMY OBJECT
-		EnemyObject* p_Enemys = new EnemyObject[NUM_ENEMYS];
+	EnemyObject* p_Enemys = new EnemyObject[NUM_ENEMYS];
 	for (int  t = 0; t < NUM_ENEMYS; t++)
 	{
 		EnemyObject* p_Enemy = (p_Enemys + t);
-		bool ret = p_Enemy->LoadImageByPath("enemyRock.png", 00000, 00000, 00000);
-		if (!ret)
-			return 0;
-
-		int rand_y_ValEnemy = rand() % 400;
-		if (rand_y_ValEnemy > SCREEN_HEIGHT)
+		if (p_Enemy)
 		{
-			rand_y_ValEnemy = SCREEN_HEIGHT*0.3 - 200;
-		}
+			bool ret = p_Enemy->LoadImageByPath("enemyRock.png", 00000, 00000, 00000);
+			if (!ret)
+				return 0;
 
-		p_Enemy->SetRectObject(rand_y_ValEnemy, 0);
-		p_Enemy->Set_Y_ValueEnemy(5);
-		AmoGunObject* p_AmoEnemy = new AmoGunObject();
-		p_Enemy->InitAmoEnemy(p_AmoEnemy);
+			int rand_y_ValEnemy = rand() % 400;
+			if (rand_y_ValEnemy > SCREEN_HEIGHT)
+			{
+				rand_y_ValEnemy = SCREEN_HEIGHT*0.3 - 200;
+			}
+
+			p_Enemy->SetRectObject(rand_y_ValEnemy, 0+t*500);
+			p_Enemy->Set_Y_ValueEnemy(5);
+			AmoGunObject* p_AmoEnemy = new AmoGunObject();
+			p_Enemy->InitAmoEnemy(p_AmoEnemy);
+		}
 	}
 	
 
@@ -109,15 +112,24 @@ int main()
 			}
 		}
 		// ENEMY SHOW
-	
-		p_Enemy->ShowObject(g_screen);
-		p_Enemy->HandleMoveEnemy(SCREEN_WIDTH, SCREEN_HEIGHT);
-		p_Enemy->MakeAmorEnemy(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+		for (int tt = 0; tt < NUM_ENEMYS; tt++)
+		{
+			EnemyObject* p_Enemy = (p_Enemys + tt);
+			if (p_Enemy)
+			{
+				p_Enemy->ShowObject(g_screen);
+				p_Enemy->HandleMoveEnemy(SCREEN_WIDTH, SCREEN_HEIGHT);
+				p_Enemy->MakeAmorEnemy(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+			}
+		}
+
 		if ( SDL_Flip(g_screen)  == -1)
 		{						  
 			return 0;
 		}
 	}
+
+	delete[] p_Enemys;
 
 	SDLCommonFunc::CleanUp(); //call to free value pointer
 	SDL_Quit();

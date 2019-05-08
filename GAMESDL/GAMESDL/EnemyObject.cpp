@@ -16,7 +16,19 @@ EnemyObject::EnemyObject()
 
 EnemyObject::~EnemyObject()
 {
-
+	if (p_EnemyAmorList.size() > 0)
+	{
+		for (int i = 0; i < p_EnemyAmorList.size(); i++)
+		{
+			AmoGunObject* p_amo = p_EnemyAmorList.at(i);
+			if (p_amo != NULL)
+			{
+				delete p_amo;
+				p_amo = NULL;
+			}
+		}
+		p_EnemyAmorList.clear();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
